@@ -5,15 +5,30 @@ describe 'Day 3 Part 1' do
     expect(convert_to_grid(%w[00100 11110 10110])).to eq([[0, 0, 1, 0, 0], [1, 1, 1, 1, 0], [1, 0, 1, 1, 0]])
   end
 
-  it 'returns gamma rate of "10110" with input of %w[00100 11110 10110]' do
-    expect(gamma_rate_binary(%w[00100 11110 10110])).to eq('10110')
-  end
-
-  it 'returns epsilon rate of "01001" with input of %w[00100 11110 10110]' do
-    expect(epsilon_rate_binary('10110')).to eq('01001')
+  it 'returns most common value of 1 with input of [1, 1, 1, 0]' do
+    expect(most_common_value([1, 1, 1, 0])).to eq(1)
   end
 
   it 'converts 10110 in binary to 22 in decimal' do
-    expect(convert_to_decimal('10110')).to eq(22)
+    expect(convert_to_decimal([1, 0, 1, 1, 0])).to eq(22)
+  end
+
+  it 'returns 198 when given the example as input' do
+    input = %w[
+      00100
+      11110
+      10110
+      10111
+      10101
+      01111
+      00111
+      11100
+      10000
+      11001
+      00010
+      01010
+    ]
+    grid = convert_to_grid(input)
+    expect(power_consumption(grid)).to eq(198)
   end
 end
