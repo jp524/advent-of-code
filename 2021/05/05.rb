@@ -14,6 +14,12 @@ class Line
     false
   end
 
+  def diagonal?
+    return true if (@start[0] - @finish[0]).abs == (@start[1] - @finish[1]).abs
+
+    false
+  end
+
   def generate_points
     points = []
     diff_x = @finish[0] - @start[0]
@@ -25,7 +31,8 @@ class Line
         diff_x -= 1
       elsif diff_x.negative?
         diff_x += 1
-      elsif diff_y.positive?
+      end
+      if diff_y.positive?
         diff_y -= 1
       elsif diff_y.negative?
         diff_y += 1
@@ -34,8 +41,16 @@ class Line
     points << @start
   end
 
+  # Part 1
+  # def perform
+  #   return unless horizontal_or_vertical?
+
+  #   generate_points
+  # end
+
+  # Part 2
   def perform
-    return unless horizontal_or_vertical?
+    return unless horizontal_or_vertical? || diagonal?
 
     generate_points
   end
@@ -61,7 +76,6 @@ class Board
   end
 end
 
-# Part 1
 board = Board.new(input_lines)
 board.count_points
 p board.count_overlap
